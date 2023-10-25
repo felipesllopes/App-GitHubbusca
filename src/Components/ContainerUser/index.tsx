@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { IUser } from "../../Pages/Home";
 import {
@@ -12,13 +13,23 @@ import {
     VerticalContainer,
 } from "./styled";
 
-interface Props {
+interface ScreenNavigationProp {
+    navigate: (screen: string, params?: IUser) => void;
+}
+
+export interface Props {
     user: IUser;
 }
 
 export const ContainerUser: React.FunctionComponent<Props> = ({ user }) => {
+    const { navigate } = useNavigation<ScreenNavigationProp>();
+
+    const handleNavigation = (user: IUser) => {
+        navigate("Profile", user);
+    };
+
     return (
-        <Container activeOpacity={0.8}>
+        <Container activeOpacity={0.8} onPress={() => handleNavigation(user)}>
             <UserAvatarUrl source={{ uri: user.avatar_url }} />
             <ContainerInformation>
                 <VerticalContainer>

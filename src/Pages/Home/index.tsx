@@ -15,12 +15,12 @@ export interface IUser {
     avatar_url: string;
     bio: string;
     followers: number;
-    following: number;
-    id: number;
     location: string;
     login: string;
     name: string;
     public_repos: number;
+    id: number;
+    following: number;
 }
 
 export const Home: React.FunctionComponent = () => {
