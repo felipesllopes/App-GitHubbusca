@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "GitHubusca",
+    "slug": "GitHubusca",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
