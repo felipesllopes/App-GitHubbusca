@@ -15,6 +15,7 @@ import {
     Header,
     IconLocation,
     ListRepositories,
+    Loading,
     Location,
     Name,
     Numbers,
@@ -39,9 +40,7 @@ export const Profile: React.FunctionComponent = () => {
                 });
         })();
         navigation.setOptions({ title: user.login ? user.login : "Usuário" });
-
-        console.log(repositories);
-    }, []);
+    }, [user.login, user.repos_url, navigation]);
 
     return (
         <Container>
@@ -77,8 +76,9 @@ export const Profile: React.FunctionComponent = () => {
 
             <ListRepositories
                 data={repositories}
-                keyExtractor={item => item.id}
+                keyExtractor={item => item.id.toString()}
                 renderItem={({ item }) => <Repos data={item} />}
+                ListEmptyComponent={<Loading />}
             />
         </Container>
     );

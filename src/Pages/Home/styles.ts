@@ -1,13 +1,13 @@
-import styled from "styled-components/native";
 import Feather from "@expo/vector-icons/Feather";
+import styled from "styled-components/native";
 
 export const Container = styled.SafeAreaView`
     flex: 1;
-    background-color: #113543;
+    background-color: ${({ theme }) => theme.colors.dark};
 `;
 
 export const Header = styled.View`
-    background-color: orange;
+    background-color: ${({ theme }) => theme.colors.primary};
 `;
 
 export const Logo = styled.Image`
@@ -21,13 +21,13 @@ export const SearchContainer = styled.View`
     flex-direction: row;
     border-width: 1.5px;
     align-items: center;
-    background-color: #999;
+    background-color: ${({ theme }) => theme.colors.gray800};
     margin: 10px;
     border-radius: 10px;
 `;
 
 export const SearchInput = styled.TextInput`
-    background-color: #fff;
+    background-color: ${({ theme }) => theme.colors.white};
     flex: 1;
     font-size: 18px;
     height: 40px;
@@ -39,11 +39,12 @@ export const SearchInput = styled.TextInput`
 export const SearchIcon = styled(Feather)`
     font-size: 20px;
     padding: 0 10px;
+    color: ${({ theme }) => theme.colors.white};
 `;
 
 export const NotFound = styled.Text`
     font-size: 19px;
-    color: white;
+    color: ${({ theme }) => theme.colors.white};
     font-style: italic;
     text-align: center;
     flex: 1;

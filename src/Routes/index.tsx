@@ -7,13 +7,25 @@ const Stack = createNativeStackNavigator();
 
 export const Routes: React.FunctionComponent = () => {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator
+            screenOptions={{
+                animation: "slide_from_right",
+            }}
+        >
             <Stack.Screen
                 name="Home"
                 component={Home}
                 options={{ headerShown: false }}
             />
-            <Stack.Screen name="Profile" component={Profile} />
+            <Stack.Screen
+                name="Profile"
+                component={Profile}
+                options={{
+                    headerStyle: { backgroundColor: "#121214" },
+                    headerTitleStyle: { color: "#FFF" },
+                    headerTintColor: "#FFF",
+                }}
+            />
         </Stack.Navigator>
     );
 };

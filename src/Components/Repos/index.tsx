@@ -1,7 +1,7 @@
 import React from "react";
 import { Alert, Linking } from "react-native";
 import { IRepos } from "../../Interfaces";
-import { Container, Date, Description, Language, Name } from "./styles";
+import { Container, Name, Text } from "./styles";
 
 interface UserProps {
     data: IRepos;
@@ -41,14 +41,12 @@ export const Repos: React.FunctionComponent<UserProps> = ({ data }) => {
     return (
         <Container activeOpacity={0.8} onPress={handleNavigate}>
             <Name>{data.name}</Name>
-            <Date>Criado em: {created}</Date>
-            <Date>Atualizado em: {updated}</Date>
-            <Description
-                style={{ display: data.description ? "flex" : "none" }}
-            >
+            <Text>Criado em: {created}</Text>
+            <Text>Atualizado em: {updated}</Text>
+            <Text style={{ display: data.description ? "flex" : "none" }}>
                 Descrição: {data.description}
-            </Description>
-            <Language>Linguagem: {data.language}</Language>
+            </Text>
+            <Text>Linguagem: {data.language}</Text>
         </Container>
     );
 };

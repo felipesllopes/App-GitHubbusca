@@ -2,14 +2,13 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import styled from "styled-components/native";
 
 export const Container = styled.TouchableOpacity`
-    background-color: #ddd;
+    background-color: ${({ theme }) => theme.colors.gray};
     margin: 10px;
     border-radius: 10px;
     border-width: 2px;
-    border-color: #999;
+    border-color: ${({ theme }) => theme.colors.gray800};
     flex-direction: row;
     padding: 10px;
-    background-color: #ddd;
 `;
 
 export const ContainerInformation = styled.View`
@@ -31,7 +30,7 @@ export const VerticalContainer = styled.View`
 
 export const UserName = styled.Text`
     font-weight: bold;
-    color: blue;
+    color: ${({ theme }) => theme.colors.blue};
     font-size: 19px;
     margin-right: 5px;
 `;
@@ -42,14 +41,13 @@ export const UserLogin = styled.Text`
 
 export const UserBio = styled.Text`
     font-size: 16px;
-    color: #333;
+    color: ${({ theme }) => theme.colors.gray800};
     margin: 10px 0;
 `;
 
 export const Information = styled.Text``;
 
 export const Icon = styled(FontAwesome)`
-    margin: 0 3px;
+    margin-right: 3px;
     font-size: 18px;
-    color: black;
 `;

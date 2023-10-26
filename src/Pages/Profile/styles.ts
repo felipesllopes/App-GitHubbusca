@@ -1,20 +1,23 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { FlatList, FlatListProps } from "react-native";
+import { ActivityIndicator, FlatList, FlatListProps } from "react-native";
 import styled from "styled-components/native";
 import { IRepos } from "../../Interfaces";
 
 export const Container = styled.SafeAreaView`
     flex: 1;
-    background-color: #113543;
+    background-color: ${({ theme }) => theme.colors.dark};
 `;
 
 export const Header = styled.View`
-    background-color: yellow;
+    background-color: ${({ theme }) => theme.colors.primary};
     padding: 5px;
+    border-bottom-width: 3px;
+    border-color: ${({ theme }) => theme.colors.dark};
 `;
 
 export const ContainerHeader = styled.View`
     flex-direction: row;
+    margin-top: 5px;
 `;
 
 export const ContainerDetails = styled.View`
@@ -75,7 +78,13 @@ export const ListRepositories = styled(
     FlatList as new (props: FlatListProps<IRepos>) => FlatList<IRepos>,
 ).attrs({
     contentContainerStyle: {
-        paddingVertical: 20,
+        paddingVertical: 10,
     },
     showsVerticalScrollIndicator: false,
 })``;
+
+export const Loading = styled(ActivityIndicator).attrs({
+    size: "large",
+})`
+    margin-top: 50%;
+`;
