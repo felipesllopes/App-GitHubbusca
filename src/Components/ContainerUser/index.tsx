@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { IUser } from "../../Pages/Home";
+import { IUser } from "../../Interfaces";
 import {
     Container,
     ContainerInformation,
@@ -29,7 +29,11 @@ export const ContainerUser: React.FunctionComponent<Props> = ({ user }) => {
     };
 
     return (
-        <Container activeOpacity={0.8} onPress={() => handleNavigation(user)}>
+        <Container
+            style={{ display: user ? "flex" : "none" }}
+            activeOpacity={0.8}
+            onPress={() => handleNavigation(user)}
+        >
             <UserAvatarUrl source={{ uri: user.avatar_url }} />
             <ContainerInformation>
                 <VerticalContainer>

@@ -1,61 +1,85 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
-import React, { useEffect } from "react";
-import { IUser } from "../Home";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Repos } from "../../Components/Repos";
+import { IRepos, IUser } from "../../Interfaces";
 import {
     AvatarUrl,
     Bio,
-    Box,
-    Box1,
-    BoxContainer,
-    BoxInfo,
-    BoxLocation,
+    BoxNumbers,
     Container,
+    ContainerDetails,
+    ContainerHeader,
+    ContainerLocation,
+    ContainerNumbers,
     Header,
-    Icon,
     IconLocation,
+    ListRepositories,
     Location,
     Name,
     Numbers,
+    Text,
 } from "./styles";
 
 export const Profile: React.FunctionComponent = () => {
     const route = useRoute();
     const user = route.params as IUser;
     const navigation = useNavigation();
+    const [repositories, setRepositories] = useState<IRepos>({} as IRepos);
 
     useEffect(() => {
+        (async () => {
+            await axios
+                .get(user.repos_url)
+                .then(async item => {
+                    setRepositories(item.data);
+                })
+                .catch(() => {
+                    alert("Não há nenhum repositório.");
+                });
+        })();
         navigation.setOptions({ title: user.login ? user.login : "Usuário" });
-    });
+
+        console.log(repositories);
+    }, []);
 
     return (
         <Container>
             <Header>
-                <Box1>
+                <ContainerHeader>
                     <AvatarUrl source={{ uri: user.avatar_url }} />
-                    <Box>
+                    <ContainerDetails>
                         <Name>{user.name}</Name>
-                        <BoxContainer>
-                            <BoxInfo>
-                                <Icon name="earth" />
+                        <ContainerNumbers>
+                            <BoxNumbers>
+                                <Text>Repositórios</Text>
                                 <Numbers>{user.public_repos}</Numbers>
-                            </BoxInfo>
-                            <BoxInfo>
-                                <Icon name="people" />
+                            </BoxNumbers>
+                            <BoxNumbers>
+                                <Text>Seguidores</Text>
                                 <Numbers>{user.followers}</Numbers>
-                            </BoxInfo>
-                            <BoxInfo>
-                                <Icon name="people" />
+                            </BoxNumbers>
+                            <BoxNumbers>
+                                <Text>Seguindo</Text>
                                 <Numbers>{user.following}</Numbers>
-                            </BoxInfo>
-                        </BoxContainer>
-                        <BoxLocation>
+                            </BoxNumbers>
+                        </ContainerNumbers>
+                        <ContainerLocation
+                            style={{ display: user.location ? "flex" : "none" }}
+                        >
                             <IconLocation name="location" />
                             <Location>{user.location}</Location>
-                        </BoxLocation>
-                    </Box>
-                </Box1>
+                        </ContainerLocation>
+                    </ContainerDetails>
+                </ContainerHeader>
                 <Bio>{user.bio}</Bio>
             </Header>
+
+            <ListRepositories
+                data={repositories}
+                keyExtractor={item => item.id}
+                renderItem={({ item }) => <Repos data={item} />}
+            />
         </Container>
     );
 };

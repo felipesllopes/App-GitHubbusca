@@ -1,31 +1,22 @@
 import React, { useState } from "react";
 import { Keyboard } from "react-native";
 import { ContainerUser } from "../../Components/ContainerUser";
+import { IUser } from "../../Interfaces";
 import { api } from "../../services/api";
 import {
     Container,
     Header,
     Logo,
+    NotFound,
     SearchContainer,
     SearchIcon,
     SearchInput,
 } from "./styles";
 
-export interface IUser {
-    avatar_url: string;
-    bio: string;
-    followers: number;
-    location: string;
-    login: string;
-    name: string;
-    public_repos: number;
-    id: number;
-    following: number;
-}
-
 export const Home: React.FunctionComponent = () => {
     const [name, setName] = useState("");
     const [user, setUser] = useState<IUser>({} as IUser);
+    const [notFound, setNotFound] = useState("");
 
     const handleSearchUser = async () => {
         await api
@@ -36,8 +27,8 @@ export const Home: React.FunctionComponent = () => {
                 setName("");
             })
             .catch(() => {
-                alert("Nenhum usuário encontrado");
-                console.log(user);
+                setNotFound("Nenhum usuário encontrado.");
+                setUser({} as IUser);
             });
         Keyboard.dismiss();
     };
@@ -55,11 +46,19 @@ export const Home: React.FunctionComponent = () => {
                         value={name}
                         onChangeText={setName}
                     />
-                    <SearchIcon name="search" onPress={handleSearchUser} />
+                    <SearchIcon
+                        name="search"
+                        onPress={handleSearchUser}
+                        disabled={name == ""}
+                    />
                 </SearchContainer>
             </Header>
 
-            {user && <ContainerUser user={user} />}
+            {Object.keys(user).length !== 0 ? (
+                <ContainerUser user={user} />
+            ) : (
+                <NotFound>{notFound}</NotFound>
+            )}
         </Container>
     );
 };

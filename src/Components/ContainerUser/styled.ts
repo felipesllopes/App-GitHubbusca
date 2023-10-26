@@ -43,6 +43,7 @@ export const UserLogin = styled.Text`
 export const UserBio = styled.Text`
     font-size: 16px;
     color: #333;
+    margin: 10px 0;
 `;
 
 export const Information = styled.Text``;

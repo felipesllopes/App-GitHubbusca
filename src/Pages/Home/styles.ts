@@ -40,3 +40,12 @@ export const SearchIcon = styled(Feather)`
     font-size: 20px;
     padding: 0 10px;
 `;
+
+export const NotFound = styled.Text`
+    font-size: 19px;
+    color: white;
+    font-style: italic;
+    text-align: center;
+    flex: 1;
+    margin-top: 20%;
+`;
