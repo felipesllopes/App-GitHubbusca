@@ -21,6 +21,7 @@ import {
     Numbers,
     Text,
 } from "./styles";
+import { Followers } from "../../Components/Followers";
 
 export const Profile: React.FunctionComponent = () => {
     const route = useRoute();
@@ -56,7 +57,7 @@ export const Profile: React.FunctionComponent = () => {
                             </BoxNumbers>
                             <BoxNumbers>
                                 <Text>Seguidores</Text>
-                                <Numbers>{user.followers}</Numbers>
+                                <Followers followers={user.followers} />
                             </BoxNumbers>
                             <BoxNumbers>
                                 <Text>Seguindo</Text>

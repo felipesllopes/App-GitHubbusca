@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "GitHubusca",
-    "slug": "GitHubusca",
+    "name": "GitHub busca",
+    "slug": "GitHub_busca",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"

@@ -52,7 +52,7 @@ export const Text = styled.Text``;
 
 export const Numbers = styled.Text`
     font-weight: bold;
-    font-size: 16px;
+    font-size: 15px;
 `;
 
 export const ContainerLocation = styled.View`

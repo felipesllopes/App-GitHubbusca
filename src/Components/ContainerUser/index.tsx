@@ -6,12 +6,14 @@ import {
     ContainerInformation,
     Icon,
     Information,
+    NotFound,
     UserAvatarUrl,
     UserBio,
     UserLogin,
     UserName,
     VerticalContainer,
-} from "./styled";
+} from "./styles";
+import { Followers } from "../Followers";
 
 interface ScreenNavigationProp {
     navigate: (screen: string, params?: IUser) => void;
@@ -28,12 +30,11 @@ export const ContainerUser: React.FunctionComponent<Props> = ({ user }) => {
         navigate("Profile", user);
     };
 
+    if (Object.keys(user).length == 0) {
+        return <NotFound>Usuário não encontrado.</NotFound>;
+    }
     return (
-        <Container
-            style={{ display: user ? "flex" : "none" }}
-            activeOpacity={0.8}
-            onPress={() => handleNavigation(user)}
-        >
+        <Container activeOpacity={0.8} onPress={() => handleNavigation(user)}>
             <UserAvatarUrl source={{ uri: user.avatar_url }} />
             <ContainerInformation>
                 <VerticalContainer>
@@ -47,7 +48,8 @@ export const ContainerUser: React.FunctionComponent<Props> = ({ user }) => {
                     <Icon name="save" />
                     <Information>{user.public_repos} - </Information>
                     <Icon name="user" />
-                    <Information>{user.followers}</Information>
+
+                    <Followers followers={user.followers} />
                 </VerticalContainer>
             </ContainerInformation>
         </Container>

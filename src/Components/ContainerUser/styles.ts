@@ -24,7 +24,6 @@ export const UserAvatarUrl = styled.Image`
 
 export const VerticalContainer = styled.View`
     flex-direction: row;
-    align-items: center;
     flex-wrap: wrap;
 `;
 
@@ -45,9 +44,21 @@ export const UserBio = styled.Text`
     margin: 10px 0;
 `;
 
-export const Information = styled.Text``;
+export const Information = styled.Text`
+    font-size: 15px;
+    font-weight: bold;
+`;
 
 export const Icon = styled(FontAwesome)`
     margin-right: 3px;
     font-size: 18px;
+`;
+
+export const NotFound = styled.Text`
+    font-size: 19px;
+    color: ${({ theme }) => theme.colors.white};
+    font-style: italic;
+    text-align: center;
+    flex: 1;
+    margin-top: 20%;
 `;

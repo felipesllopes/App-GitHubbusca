@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { Keyboard } from "react-native";
+import { Keyboard, View } from "react-native";
 import { ContainerUser } from "../../Components/ContainerUser";
 import { IUser } from "../../Interfaces";
 import { api } from "../../services/api";
 import {
     Container,
     Header,
+    Loading,
     Logo,
-    NotFound,
     SearchContainer,
     SearchIcon,
     SearchInput,
@@ -16,21 +16,23 @@ import {
 export const Home: React.FunctionComponent = () => {
     const [name, setName] = useState("");
     const [user, setUser] = useState<IUser>({} as IUser);
-    const [notFound, setNotFound] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [initial, setInitial] = useState(true);
 
     const handleSearchUser = async () => {
+        setInitial(false);
+        setLoading(true);
         await api
             .get(name)
             .then(async item => {
-                console.log(await item.data);
                 setUser(await item.data);
                 setName("");
             })
             .catch(() => {
-                setNotFound("Nenhum usuário encontrado.");
                 setUser({} as IUser);
             });
         Keyboard.dismiss();
+        setLoading(false);
     };
 
     return (
@@ -42,7 +44,7 @@ export const Home: React.FunctionComponent = () => {
                 />
                 <SearchContainer>
                     <SearchInput
-                        placeholder="Buscar usuário"
+                        placeholder="Digite o login do usuário"
                         value={name}
                         onChangeText={setName}
                     />
@@ -54,10 +56,12 @@ export const Home: React.FunctionComponent = () => {
                 </SearchContainer>
             </Header>
 
-            {Object.keys(user).length !== 0 ? (
-                <ContainerUser user={user} />
+            {loading ? (
+                <Loading />
+            ) : initial ? (
+                <View />
             ) : (
-                <NotFound>{notFound}</NotFound>
+                <ContainerUser user={user} />
             )}
         </Container>
     );

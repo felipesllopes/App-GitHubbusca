@@ -1,4 +1,5 @@
 import Feather from "@expo/vector-icons/Feather";
+import { ActivityIndicator } from "react-native";
 import styled from "styled-components/native";
 
 export const Container = styled.SafeAreaView`
@@ -42,11 +43,8 @@ export const SearchIcon = styled(Feather)`
     color: ${({ theme }) => theme.colors.white};
 `;
 
-export const NotFound = styled.Text`
-    font-size: 19px;
-    color: ${({ theme }) => theme.colors.white};
-    font-style: italic;
-    text-align: center;
-    flex: 1;
+export const Loading = styled(ActivityIndicator).attrs({
+    size: "large",
+})`
     margin-top: 20%;
 `;
