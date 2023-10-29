@@ -14,6 +14,13 @@ You can also navigate to the repository if desired.
 
 <br/>
 
+### Screens
+
+![tela2](https://github.com/felipesllopes/App-GitHubbusca/assets/99768939/a027a741-c3e9-410c-96a0-bf87a721283a)
+![tela3](https://github.com/felipesllopes/App-GitHubbusca/assets/99768939/f540027f-a232-4414-b646-e3928788ebb4)
+
+<br/>
+
 ### Language and Technologies used
 
 - Typescript
