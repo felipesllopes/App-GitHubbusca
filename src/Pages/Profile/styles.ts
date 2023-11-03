@@ -62,11 +62,11 @@ export const ContainerLocation = styled.View`
 
 export const IconLocation = styled(Ionicons)`
     margin-right: 4px;
-    font-size: 22px;
+    font-size: 18px;
 `;
 
 export const Location = styled.Text`
-    font-size: 17px;
+    font-size: 15px;
 `;
 
 export const Bio = styled.Text`

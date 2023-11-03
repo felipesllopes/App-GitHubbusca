@@ -15,7 +15,7 @@ export const Logo = styled.Image`
     width: 126px;
     height: 180px;
     align-self: center;
-    margin: 10px;
+    margin: 15px;
 `;
 
 export const SearchContainer = styled.View`
@@ -23,7 +23,7 @@ export const SearchContainer = styled.View`
     border-width: 1.5px;
     align-items: center;
     background-color: ${({ theme }) => theme.colors.gray800};
-    margin: 10px;
+    margin: 0 10px 10px;
     border-radius: 10px;
 `;
 

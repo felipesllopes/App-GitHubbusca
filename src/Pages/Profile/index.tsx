@@ -37,7 +37,7 @@ export const Profile: React.FunctionComponent = () => {
                     setRepositories(item.data);
                 })
                 .catch(() => {
-                    alert("Não há nenhum repositório.");
+                    alert("Nenhum repositório encontrado.");
                 });
         })();
         navigation.setOptions({ title: user.login ? user.login : "Usuário" });
